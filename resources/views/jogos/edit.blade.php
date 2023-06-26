@@ -7,31 +7,28 @@
     <div class="container mt-2">
         <h1>Editar Jogo</h1>
         <hr>
-        <form action="{{ route('jogos.update', ['id' => $jogos->id]) }}" method='POST'>
+        <form action="{{ route('jogos.update', ['jogo' => $jogos->id]) }}" method='POST'>
             @csrf
             @method('PUT')
             <div class="form-group">
                 <div class="form_group"><label for="nome">Nome:</label>
-                    <input type="text" class='form-control' name='nome' value="{{ $jogos->nome }}"
-                        placeholder="Digite um nome">
+                    <input type="text" class='form-control' name='nome' value="{{$jogos->nome}}" placeholder="Digite um nome" required>
                 </div>
                 <br>
 
-                <div class="form-group"><label for="categoria">Categoria:</label>
-                    <input type="text" class='form-control' name='categoria' value="{{ $jogos->categoria }}"
-                        placeholder="Digite uma categoria">
+                <div class="form-group">
+                    <label for="nome">Categoria:</label>
+                    <input type="text" class='form-control' id='formInputGroup' name='categoria' value="{{$jogos->categoria}}" placeholder="Digite uma categoria" required>
                 </div>
                 <br>
 
                 <div class="form-group"><label for="ano_criacao">Ano de Criação:</label>
-                    <input type="text" class='form-control' name='ano_criacao'value="{{ $jogos->ano_criacao }}"
-                        placeholder="Digite o ano de criação">
+                    <input type="text" class='form-control' name='ano_criacao'value="{{ $jogos->ano_criacao }}" placeholder="Digite o ano de criação" required>
                 </div>
                 <br>
 
                 <div class="form-group"><label for="valor">Valor:</label>
-                    <input type="text" class='form-control' name='valor' value="{{ $jogos->valor }}"
-                        placeholder="Digite um valor">
+                    <input type="text" class='form-control' name='valor' value="{{$jogos->valor}}" laceholder="Digite um valor" required>
                 </div>
                 <br>
 

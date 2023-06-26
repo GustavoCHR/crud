@@ -10,26 +10,27 @@
         <form action="{{ route('jogos.store') }}" method='POST'>
             <div class="form-group">
                 @csrf
-                <div class="form_group"><label for="nome">Nome:</label>
-                    <input type="text" class='form-control' name='nome' placeholder="Digite um nome">
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" class='form-control' id='formInputGroup' name='nome' placeholder="Digite um nome" value="{{old('nome')}}" required>
                 </div>
                 <br>
 
-                <div class="form-group"><label for="categoria">Categoria:</label>
-                    <input type="text" class='form-control' name='categoria' placeholder="Digite uma categoria">
+                <div class="form-group">
+                    <label for="nome">Categoria:</label>
+                    <input type="text" class='form-control' id='formInputGroup' name='categoria' placeholder="Digite uma categoria" value="{{old('categoria')}}" required>
                 </div>
                 <br>
 
                 <div class="form-group"><label for="ano_criacao">Ano de Criação:</label>
-                    <input type="text" class='form-control' name='ano_criacao' placeholder="Digite o ano de criação">
+                    <input type="text" class='form-control' name='ano_criacao' placeholder="Digite o ano de criação" value="{{old('ano_criacao')}}" required>
                 </div>
                 <br>
 
                 <div class="form-group"><label for="valor">Valor:</label>
-                    <input type="text" class='form-control' name='valor' placeholder="Digite um valor">
+                    <input type="text" class='form-control' name='valor' placeholder="Digite um valor" value="{{old('valor')}}" required>
                 </div>
                 <br>
-
 
                 <div class="row">
                     <div class="col-sm-1">

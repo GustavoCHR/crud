@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class JogosController extends Controller
 {
+
+
+
     /**
      * Display a listing of the resource.
      */
@@ -29,6 +32,14 @@ class JogosController extends Controller
      */
     public function store(Request $request)
     {
+        //Create com validação de informações
+        $request -> validate([
+            'nome' => 'required|min:3|max:150',
+            'categoria' => 'required',
+            'ano_criacao' => 'required|max:4',
+            'valor' => 'required|max:5',
+        ]);
+
         Jogo::create($request->all());
         return redirect()->route('jogos.index');
     }
@@ -46,7 +57,8 @@ class JogosController extends Controller
      */
     public function edit($id)
     {
-        $jogos = Jogo::where('id', $id)->first();
+        $jogos = Jogo::findOrFail($id);
+
         if (!empty($jogos)) {
             return view('jogos.edit', ['jogos' => $jogos]);
         } else {
@@ -59,14 +71,42 @@ class JogosController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $data = [
             'nome' => $request->nome,
             'categoria' => $request->categoria,
             'ano_criacao' => $request->ano_criacao,
             'valor' => $request->valor
         ];
-        Jogo::where('id', $id)->update($data);
+        $jogos = Jogo::findOrFail($id);
+        $jogos->update($data);
         return redirect()->route('jogos.index');
+
+        //Feito pela CHATGPT
+    /*
+        $data = [
+            'nome' => $request->input('nome'),
+            'categoria' => $request->input('categoria'),
+            'ano_criacao' => $request->input('ano_criacao'),
+            'valor' => $request->input('valor')
+        ];
+    */
+
+        $jogos = Jogo::findOrFail($id);
+        $jogos->update($data);
+        return redirect()->route('jogos.index');
+
+        /*
+        Update com validação de Informações
+        $data = [
+            $request -> validate([
+                'nome' => 'required|max:60',
+                'categoria' => 'required',
+                'ano_criacao' => 'required|max:4',
+                'valor' => 'required|max:5',
+            ])
+        ];
+        */
     }
 
     /**
@@ -74,7 +114,18 @@ class JogosController extends Controller
      */
     public function destroy($id)
     {
-        Jogo::where('id', $id)->delete();
+        $jogos = Jogo::findOrFail($id);
+        $jogos->delete();
+
         return redirect()->route('jogos.index');
+
     }
+
+    // public function destroyAll($id)
+    // {
+    //     $jogos = Jogo::findOrFail($id);
+    //     $jogos->delete();
+
+    //     return redirect()->route('jogos.index');
+    // }
 }
