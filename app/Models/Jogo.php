@@ -17,6 +17,6 @@ class Jogo extends Model
     ];
 
     public function categoria(){
-        return $this->belongsTo(categoria_id::class);
+        return $this->belongsTo(Categoria::class);
     }
 }

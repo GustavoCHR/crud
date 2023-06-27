@@ -17,7 +17,7 @@ class CategoriaFactory extends Factory
     public function definition(): array
     {
         return [
-            'nome' => fake()->randomElement
+            'nome' => fake()->unique()->randomElement
             (['Ação',
             'Arcade e Ritmo',
             'Hack and Slash',

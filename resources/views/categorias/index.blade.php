@@ -13,25 +13,13 @@
             <div class="col-sm-2 mt-3 mb-1 d-flex">
                 <a href="{{ route('categorias.create') }}"><input type="button" name='novo' class='btn btn-primary me-2' value="Novo"></a>
 
-                <a href="{{ route('jogos.index') }}" class="btn btn-warning">Jogos</a> {{--#PRECISA RESOLVER ERRO NA ROTA--}}
+                <a href="{{ route('jogos.index') }}" class="btn btn-warning">Jogos</a>
             </div>
         </div>
         <hr>
         <table class="table table-borderless table-hover align-middle">
             <thead>
-                {{-- <div>
-                    <form  action="" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <a href="#" class="btn btn-danger" id="deleteAllSelected">Delete All</a>
-                    </form>
-                </div> --}}
-
                 <tr class="align-middle">
-                    {{-- <th scope="col" >
-                        <input type="checkbox" class="checkbox me-2" id="select_all_ids">
-                        # ID
-                    </th> --}}
                     <th scope="col">ID</th>
                     <th scope="col">Nome</th>
                     <th scope="col">...</th>
@@ -41,9 +29,6 @@
             <tbody>
                 @foreach ($categorias as $categoria)
                     <tr>
-                        {{-- <td class='checkbox'>
-                            <input class='checkbox' type="checkbox" name="ids" class='checkbox_ids' value="{{ $categoria->id }}">
-                        </td> --}}
                         <td class="p-2 flex-fill">{{ $categoria->id }}</td>
                         <td class="p-2 flex-fill">{{ $categoria->nome }}</td>
                         <td class="d-flex">
@@ -73,34 +58,4 @@
             <div class="page-bar"></div>
         </table>
     </div>
-
-    {{-- <script>
-        $(function(e) {
-            $('#select_all_ids').click(function(){
-                $('.checkbox_ids').prop('checked', $(this).prop('checked'));
-            });
-
-            $("#deleteAllSelected").click(function(e){
-                e.preventDefault();
-                var all_ids = [];
-                $('input:checkbox[name=ids]:checked').each(function(){
-                    all_ids.push($(this).val());
-                })
-
-            $.ajax({
-                url:"{{route('categorias.destroyAll')}}",
-                type:"DELETE",
-                data:{
-                    ids=all_ids,
-                    _token:'{{csrf_token()}}'
-                },
-                success:function(response){
-                    $.each(all_ids, function(key, val) {
-                        $('#categoria'+val).remove();
-                    })
-                }
-            })
-        })
-    });
-    </script> --}}
 @endsection

@@ -14,23 +14,11 @@
                 <a href="{{ route('jogos.create') }}"><input type="button" name='novo' class='btn btn-primary me-2' value="Novo"></a>
 
                 <a href="{{ route('categorias.index') }}" class="btn btn-warning">Categoria</a>
-                {{-- #PRECISA RESOLVER ERRO NA ROTA --}}
             </div>
         </div>
         <hr>
         <table class="table table-hover">
             <thead>
-                {{-- <div>
-                    <form  action="" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <a href="#" class="btn btn-danger" id="deleteAllSelected">Delete All</a>
-                    </form>
-                </div> --}}
-                <tr>
-                    {{-- <th>
-                        <input type="checkbox" name="" id="select_all_ids">
-                    </th> --}}
                     <th scope="col">ID</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Categoria</th>
@@ -42,12 +30,9 @@
             <tbody>
                 @foreach ($jogos as $jogo)
                     <tr>
-                        {{-- <td class='checkbox'>
-                            <input class='checkbox' type="checkbox" name="" class='checkbox_ids' value="{{ $jogo->id }}">
-                        </td> --}}
                         <td>{{ $jogo->id }}</td>
                         <td>{{ $jogo->nome }}</td>
-                        <td>{{ $jogo->categoria }}</td>
+                        <td>{{ $jogo->categoria->nome }}</td>
                         <td>{{ $jogo->ano_criacao }}</td>
                         <td>{{ $jogo->valor }}</td>
                         <td class="d-flex">
@@ -76,35 +61,5 @@
             </tbody>
         </table>
     </div>
-
-    {{-- <script>
-        $(function(e) {
-            $('#select_all_ids').click(function(){
-                $('.checkbox_ids').prop('checked', $(this).prop('checked'));
-            });
-
-            $("#deleteAllSelected").click(function(e){
-                e.preventDefault();
-                var all_ids = [];
-                $('input:checkbox[name=ids]:checked').each(function(){
-                    all_ids.push($(this).val());
-                })
-
-            $.ajax({
-                url:"{{route('jogos.destroyAll')}}",
-                type:"DELETE",
-                data:{
-                    ids=all_ids,
-                    _token:'{{csrf_token()}}'
-                },
-                success:function(response){
-                    $.each(all_ids, function(key, val) {
-                        $('#jogo_id'+val).remove();
-                    })
-                }
-            })
-        })
-    });
-    </script> --}}
 
 @endsection

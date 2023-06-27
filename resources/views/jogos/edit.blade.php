@@ -16,11 +16,13 @@
                 </div>
                 <br>
 
-                <div class="form-group">
-                    <label for="nome">Categoria:</label>
-                    <input type="text" class='form-control' id='formInputGroup' name='categoria' value="{{$jogos->categoria}}" placeholder="Digite uma categoria" required>
-                </div>
-                <br>
+                <label for="categoria">Categoria:</label>
+                <select name="categoria" class='form-select mb-3' required>
+                    <option selected>{{$jogos->categoria->nome}}</option>
+                    @foreach ($categorias as $categoria)
+                    <option value="{{ $categoria->id }}">{{ $categoria->nome }}</option>
+                    @endforeach
+                </select>
 
                 <div class="form-group"><label for="ano_criacao">Ano de Criação:</label>
                     <input type="text" class='form-control' name='ano_criacao'value="{{ $jogos->ano_criacao }}" placeholder="Digite o ano de criação" required>
