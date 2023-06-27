@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Jogo;
 use Illuminate\Http\Request;
+use App\Models\Categoria;
 
 class JogosController extends Controller
 {
@@ -24,7 +25,9 @@ class JogosController extends Controller
      */
     public function create()
     {
-        return view('jogos.create');
+        $categorias = Categoria::all();
+
+        return view('jogos.create', ['categorias' => $categorias]);
     }
 
     /**
@@ -39,6 +42,20 @@ class JogosController extends Controller
             'ano_criacao' => 'required|max:4',
             'valor' => 'required|max:5',
         ]);
+
+        $jogo = new Jogo();
+
+        $jogo->nome = $request->input('nome');
+        $jogo->ano_criacao = $request->input('ano_criacao');
+        $jogo->valor = $request->input('valor');
+
+        // Obtendo a categoria selecionada no formulário
+        $categoriaId = $request->input('categoria');
+
+        // Relacionando o jogo com a categoria selecionada
+        $jogo->categoria()->associate($categoriaId);
+
+        $jogo->save();
 
         Jogo::create($request->all());
         return redirect()->route('jogos.index');

@@ -13,17 +13,11 @@ return new class extends Migration
     {
 
         //Add relacionamento na tabela jogos E removendo tabela categoria
-        // Schema::table('jogos', function (Blueprint $table) {
-        //     $table->unsignedBigInteger('categoria_id')->after('nome');
-        //     $table->foreign('categoria_id')->references('id')->on('categorias');
-        //     $table->dropColumn('categoria');
-        // });
-        // DB::statement('update jogos set categoria_id = categoria');
-
-        //Removendo coluna de categoria da tabela jogos
-        // Schema::table('jogos', function (Blueprint $table) {
-        //     $table->dropColumn('categoria');
-        // });
+        Schema::table('jogos', function (Blueprint $table) {
+            $table->unsignedBigInteger('categoria_id')->after('nome');
+            $table->foreign('categoria_id')->references('id')->on('categorias');
+            $table->dropColumn('categoria');
+        });
 
     }
 
@@ -32,16 +26,14 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // DB::statement('update jogos set categoria = categoria_id');
-
-        // //Removendo relacionamento na tabela jogos
-        // Schema::table('jogos', function (Blueprint $table) {
-        //     //removendo a fk
-        //     $table->dropForeign('jogos_categoria_id_foreing');
-        //     //removendo a coluna
-        //     $table->dropColumn('categoria_id');
-        //     //Add coluna de categoria da tabela jogos
-        //     $table->string('categoria', 150)->after('nome');
-        // });
+         //Removendo relacionamento na tabela jogos
+        Schema::table('jogos', function (Blueprint $table) {
+            //removendo a fk
+            $table->dropForeign('jogos_categoria_id_foreing');
+            //removendo a coluna
+            $table->dropColumn('categoria_id');
+            //Add coluna de categoria da tabela jogos
+            $table->string('categoria', 150)->after('nome');
+        });
     }
 };

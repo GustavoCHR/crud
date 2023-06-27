@@ -14,6 +14,6 @@ class Categoria extends Model
     ];
 
     public function jogo(){
-        return $this->belongsToMany(Jogo::class);
+        return $this->hasMany(Jogo::class);
     }
 }

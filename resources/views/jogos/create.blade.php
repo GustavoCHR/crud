@@ -16,11 +16,19 @@
                 </div>
                 <br>
 
-                <div class="form-group">
+                <label for="categoria">Categoria:</label>
+                <select name="categoria" class='form-select mb-3'>
+                    <option selected disabled>Selecione uma categoria</option>
+                    @foreach ($categorias as $categoria)
+                    <option value="{{ $categoria->id }}">{{ $categoria->nome }}</option>
+                    @endforeach
+                </select>
+
+                {{-- <div class="form-group">
                     <label for="nome">Categoria:</label>
                     <input type="text" class='form-control' id='formInputGroup' name='categoria' placeholder="Digite uma categoria" value="{{old('categoria')}}" required>
                 </div>
-                <br>
+                <br> --}}
 
                 <div class="form-group"><label for="ano_criacao">Ano de Criação:</label>
                     <input type="text" class='form-control' name='ano_criacao' placeholder="Digite o ano de criação" value="{{old('ano_criacao')}}" required>
