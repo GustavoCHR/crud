@@ -65,32 +65,21 @@ class JogosController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'nome' => 'required|max:150',
-            'categoria_id' => 'required',
-            'ano_criacao' => 'required|max:4',
-            'valor' => 'required|max:5',
-        ]);
 
-        // Recuperar o jogo existente com a categoria associada
-        $jogo = Jogo::with('categoria')->findOrFail($id);
+        $jogo = Jogo::findOrFail($id);
 
-        $data = [
-        // Atualizar os atributos do jogo
-        'nome' => $request->input('nome'),
-        'ano_criacao' => $request->input('ano_criacao'),
-        'valor' => $request->input('valor'),
-        ];
+        // Atualizar atributos do jogo
+        $jogo->nome = $request->input('nome');
+        $jogo->ano_criacao = $request->input('ano_criacao');
+        $jogo->valor = $request->input('valor');
 
-        // Recuperar a categoria do banco de dados,
-        $categoriaId = $request->input('categoria_id');
+        // Recuperar a categoria do banco de dados
+        $categoriaId = $request->input('categoria');
         $categoria = Categoria::findOrFail($categoriaId);
 
-        // Associar a nova categoria ao jogo
-        $jogo->categoria()->associate($categoria);
+        $jogo->categoria_id = $categoria->id;
+        $jogo->update();
 
-
-        $jogo->update($data);
         return redirect()->route('jogos.index');
     }
 
