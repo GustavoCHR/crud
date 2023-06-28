@@ -55,7 +55,6 @@
                     </tr>
                 @endforeach
             </tbody>
-            <div class="page-bar"></div>
         </table>
     </div>
 @endsection

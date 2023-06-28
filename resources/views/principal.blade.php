@@ -1,5 +1,3 @@
-{{-- Feita só pra facilitar o acesso da index (não precisar ficar escrevendo a URL o tempo todo) --}}
-
 @extends('layouts.app')
 
 @section('title', 'Página Principal')

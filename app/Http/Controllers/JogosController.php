@@ -31,7 +31,6 @@ class JogosController extends Controller
         ]);
 
         $jogo = new Jogo();
-
         $jogo->nome = $request->input('nome');
         $jogo->ano_criacao = $request->input('ano_criacao');
         $jogo->valor = $request->input('valor');
@@ -46,10 +45,7 @@ class JogosController extends Controller
         return redirect()->route('jogos.index');
     }
 
-    public function show(string $id)
-    {
-
-    }
+    //public function show(string $id){}
 
     public function edit($id)
     {

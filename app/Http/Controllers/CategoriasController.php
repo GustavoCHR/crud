@@ -19,17 +19,15 @@ class CategoriasController extends Controller
 
     public function store(Request $request)
     {
-        $request -> validate([
-            'nome' => 'required|min:3|max:150',
+        $request->validate([
+            'nome' => 'required|max:150',
         ]);
+
         Categoria::create($request->all());
         return redirect()->route('categorias.index');
     }
 
-    public function show(string $id)
-    {
-        //
-    }
+    // public function show(string $id){}
 
     public function edit(string $id)
     {
@@ -57,14 +55,6 @@ class CategoriasController extends Controller
     {
         $categorias = Categoria::findOrFail($id);
         $categorias->delete();
-
-        return redirect()->route('categorias.index');
-    }
-
-    public function destroyAll($id)
-    {
-        $jogos = Categoria::findOrFail($id);
-        $jogos->delete();
 
         return redirect()->route('categorias.index');
     }
